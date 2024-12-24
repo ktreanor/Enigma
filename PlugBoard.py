@@ -1,4 +1,5 @@
-from Enigma_Errors import *
+from Enigma_Errors import ExceededMaximumPLugsError
+from Enigma_Errors import InvalidPlugError
 
 MAX_PLUGS = 10
 
@@ -47,7 +48,7 @@ class PlugBoard():
         self.__plug_count -= 1
 
     def into_plugboard(self, input: str) -> str:
-        
+
         # Create a translation table from the dictionary
         plug_table = str.maketrans(self.__plug_board)
 
@@ -57,7 +58,7 @@ class PlugBoard():
 
 if __name__ == "__main__":
 
-    # Testing general functionality 
+    # Testing general functionality
 
     plug = PlugBoard()
     plug.Add_Plug('A', 'Z')
@@ -76,12 +77,8 @@ if __name__ == "__main__":
     print(f'D -> {plug.into_plugboard('D')}')
     print()
 
-    # Should throw an exception 
+    # Should throw an exception
     try:
         plug.Remove_Plug('C', 'G')
     except InvalidPlugError as e:
         print(f'Error: {e}')
-
-
-
-
